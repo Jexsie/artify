@@ -1,13 +1,13 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import { Navbar} from "../navbar/navbar";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Artify" },
+    { name: "description", content: "Welcome to Artify" },
   ];
 }
 
 export default function Home() {
-  return <Welcome />;
+  return <Navbar />;
 }
