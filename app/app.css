@@ -19,6 +19,10 @@
   }
 }
 
+@utility max-w-default {
+  max-width: 960px;
+}
+
 /*
  * New custom design token for a brand color.
  * Tailwind will automatically generate utility classes from this,

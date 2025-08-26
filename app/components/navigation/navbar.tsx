@@ -8,7 +8,7 @@ import { Link } from "react-router";
 export function Navbar() {
   const { theme, setTheme } = useTheme();
   return (
-    <div className="w-full bg-background-light dark:bg-background-dark border-1 border-line-light dark:border-line-dark top-0 fixed z-50">
+    <div className="w-full bg-background-light dark:bg-background-dark border-b-1 border-line-light dark:border-line-dark top-0 fixed z-50">
       <div className="mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
@@ -20,7 +20,7 @@ export function Navbar() {
               Artify
             </Link>
             <nav className="hidden md:flex space-x-6">
-              <Link to="#" className="sub-header">
+              <Link to="/explore" className="sub-header">
                 Explore
               </Link>
               <Link to="#" className="sub-header">

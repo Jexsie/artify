@@ -14,6 +14,16 @@ import pixel from "~/components/images/pixel.svg";
 import AssetComponent from "~/components/asset";
 import Footer from "~/components/ui/footer";
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
+
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Artify" },
@@ -77,47 +87,47 @@ const trending: Asset[] = [
   },
 ];
 
+const filters = {
+  category: {
+    title: "Category",
+    values: ["nfts", "art", "photos"],
+  },
+  priceRange: {
+    title: "Price Range",
+    values: ["50 - 100", "100 - 200", "200+"],
+  },
+  sortBy: { title: "Sort By", values: ["A-Z", "Z-A", "Recents"] },
+};
+
 export default function Home() {
   return (
     <>
       <Navbar />
       <div className="pt-30 max-w-default mx-auto">
-        <div className="flex flex-col gap-12 justify-center items-center ">
-          <div className="relative flex justify-center items-center h-[480px] w-[960px] rounded-[12px] mx-4">
-            <img src={heroBg} />
-            <div className="absolute flex flex-col justify-center items-center top-[116px]">
-              <h1 className="text-brand-light text-6xl text-center mb-5 font-bold">
-                Discover, Collect, and Trade Digital Assets
-              </h1>
-              <p className="text-brand-light text-[16px] font-normal mb-10">
-                Create, Explore and Transfer digital art to collectibles, all
-                powered by the Hedera network.
-              </p>
-              <Button className="btn h-12">Get Started</Button>
+        <h1 className="header text-[32px]">Explore assets</h1>
+        <div className="flex gap-4 my-7">
+          {Object.values(filters).map((f) => (
+            <Select>
+              <SelectTrigger className="w-[133px] bg-inputs-light dark:bg-inputs-dark rounded-[12px] h-8">
+                <SelectValue placeholder={f.title} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>{f.title}</SelectLabel>
+                  {f.values.map((v) => (
+                    <SelectItem value="apple">{v}</SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-4">
+          {[...trending, ...featured].map((asset) => (
+            <div className="mt-2">
+              <AssetComponent asset={asset} minSize />
             </div>
-          </div>
-          <div>
-            <p className="header mb-8">Featured Collections</p>
-            <ScrollArea className="max-w-default whitespace-nowrap scrollbar-hide">
-              <div className="flex w-max space-x-4">
-                {featured.map((asset, i) => (
-                  <AssetComponent key={i} asset={asset} minSize />
-                ))}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          </div>
-          <div>
-            <p className="header mb-8">Trending Collections</p>
-            <ScrollArea className="max-w-default whitespace-nowrap scrollbar-hide">
-              <div className="flex w-max space-x-4">
-                {trending.map((asset, i) => (
-                  <AssetComponent key={i} asset={asset} minSize />
-                ))}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          </div>
+          ))}
         </div>
         <Footer />
       </div>
