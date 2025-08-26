@@ -1,21 +1,58 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark, .dark *));
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-grotesk: "Space Grotesk", sans-serif;
+}
+/*
+ * New custom utility for hiding scrollbars.
+ * This can now be used as a class in your HTML, e.g., <div class="scrollbar-hide">...</div>
+ */
+@utility scrollbar-hide {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-html,
+/*
+ * New custom design token for a brand color.
+ * Tailwind will automatically generate utility classes from this,
+ * such as `bg-brand-primary` or `text-brand-primary`.
+ */
+@theme {
+  --color-brand-primary: #617afa;
+  --color-brand-secondary: #47579e;
+  --color-brand-tertiary: #a394c7;
+  --color-brand-dark: #0d0f1c;
+  --color-brand-light: #ffffff;
+  --color-background-dark: #171221;
+  --color-background-light: #f7fafc;
+  --color-inputs-light: #e5e8f5;
+  --color-inputs-dark: #2e2447;
+  --color-btn-dark: #571ae5;
+  --color-btn-light: #617afa;
+  --color-line-light: #cfd1e8;
+  --color-line-dark: #423366;
+}
+
+html {
+  @apply bg-background-light dark:bg-background-dark;
+}
+
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply font-grotesk bg-background-light dark:bg-background-dark min-h-screen scrollbar-hide;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
 }
+
+/* overscroll-behavior: none; */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -130,5 +167,32 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/*
+ * New custom component class.
+ * This combines multiple utility classes to create a reusable button style.
+ * You can now use this as <button class="btn-custom">...</button>
+ */
+@layer components {
+  .sub-header {
+    @apply text-sm font-medium text-brand-dark dark:text-brand-light;
+  }
+
+  .header {
+    @apply text-brand-dark dark:text-brand-light text-[22px] font-bold;
+  }
+
+  .text {
+    @apply text-brand-secondary dark:text-brand-tertiary text-sm;
+  }
+
+  .inputs {
+    @apply text-[16px] text-brand-secondary dark:text-brand-tertiary bg-inputs-light dark:bg-inputs-dark rounded-[12px] focus:ring-2 focus:ring-line-light dark:focus:ring-line-dark focus:outline-none;
+  }
+
+  .btn {
+    @apply !text-brand-light !bg-btn-light dark:!bg-btn-dark cursor-pointer;
   }
 }
