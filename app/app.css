@@ -23,6 +23,10 @@
   max-width: 960px;
 }
 
+@utility radius-default {
+  border-radius: 12px;
+}
+
 /*
  * New custom design token for a brand color.
  * Tailwind will automatically generate utility classes from this,

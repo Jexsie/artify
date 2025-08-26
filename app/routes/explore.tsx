@@ -102,34 +102,30 @@ const filters = {
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <div className="pt-30 max-w-default mx-auto">
-        <h1 className="header text-[32px]">Explore assets</h1>
-        <div className="flex gap-4 my-7">
-          {Object.values(filters).map((f) => (
-            <Select>
-              <SelectTrigger className="w-[133px] bg-inputs-light dark:bg-inputs-dark rounded-[12px] h-8">
-                <SelectValue placeholder={f.title} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>{f.title}</SelectLabel>
-                  {f.values.map((v) => (
-                    <SelectItem value="apple">{v}</SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-4">
-          {[...trending, ...featured].map((asset) => (
-            <div className="mt-2">
-              <AssetComponent asset={asset} minSize />
-            </div>
-          ))}
-        </div>
-        <Footer />
+      <h1 className="header text-[32px]">Explore assets</h1>
+      <div className="flex gap-4 my-7">
+        {Object.values(filters).map((f) => (
+          <Select>
+            <SelectTrigger className=" bg-inputs-light dark:bg-inputs-dark text-brand-dark dark:text-brand-light rounded-[12px] h-8">
+              <SelectValue placeholder={f.title} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>{f.title}</SelectLabel>
+                {f.values.map((v) => (
+                  <SelectItem value="apple">{v}</SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-4">
+        {[...trending, ...featured].map((asset) => (
+          <div className="mt-2">
+            <AssetComponent asset={asset} minSize />
+          </div>
+        ))}
       </div>
     </>
   );

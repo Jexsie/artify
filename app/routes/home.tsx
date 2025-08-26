@@ -79,48 +79,42 @@ const trending: Asset[] = [
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <div className="pt-30 max-w-default mx-auto">
-        <div className="flex flex-col gap-12 justify-center items-center ">
-          <div className="relative flex justify-center items-center h-[480px] w-[960px] rounded-[12px] mx-4">
-            <img src={heroBg} />
-            <div className="absolute flex flex-col justify-center items-center top-[116px]">
-              <h1 className="text-brand-light text-6xl text-center mb-5 font-bold">
-                Discover, Collect, and Trade Digital Assets
-              </h1>
-              <p className="text-brand-light text-[16px] font-normal mb-10">
-                Create, Explore and Transfer digital art to collectibles, all
-                powered by the Hedera network.
-              </p>
-              <Button className="btn h-12">Get Started</Button>
-            </div>
-          </div>
-          <div>
-            <p className="header mb-8">Featured Collections</p>
-            <ScrollArea className="max-w-default whitespace-nowrap scrollbar-hide">
-              <div className="flex w-max space-x-4">
-                {featured.map((asset, i) => (
-                  <AssetComponent key={i} asset={asset} minSize />
-                ))}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          </div>
-          <div>
-            <p className="header mb-8">Trending Collections</p>
-            <ScrollArea className="max-w-default whitespace-nowrap scrollbar-hide">
-              <div className="flex w-max space-x-4">
-                {trending.map((asset, i) => (
-                  <AssetComponent key={i} asset={asset} minSize />
-                ))}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          </div>
+    <div className="flex flex-col gap-12 justify-center items-center ">
+      <div className="relative flex justify-center items-center h-[480px] w-[960px] rounded-[12px] mx-4">
+        <img src={heroBg} />
+        <div className="absolute flex flex-col justify-center items-center top-[116px]">
+          <h1 className="text-brand-light text-6xl text-center mb-5 font-bold">
+            Discover, Collect, and Trade Digital Assets
+          </h1>
+          <p className="text-brand-light text-[16px] font-normal mb-10">
+            Create, Explore and Transfer digital art to collectibles, all
+            powered by the Hedera network.
+          </p>
+          <Button className="btn h-12">Get Started</Button>
         </div>
-        <Footer />
       </div>
-    </>
+      <div>
+        <p className="header mb-8">Featured Collections</p>
+        <ScrollArea className="max-w-default whitespace-nowrap scrollbar-hide">
+          <div className="flex w-max space-x-4">
+            {featured.map((asset, i) => (
+              <AssetComponent key={i} asset={asset} minSize />
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
+      </div>
+      <div>
+        <p className="header mb-8">Trending Collections</p>
+        <ScrollArea className="max-w-default whitespace-nowrap scrollbar-hide">
+          <div className="flex w-max space-x-4">
+            {trending.map((asset, i) => (
+              <AssetComponent key={i} asset={asset} minSize />
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
+      </div>
+    </div>
   );
 }

@@ -4,6 +4,7 @@ import { useTheme } from "../theme-provider/theme-provider";
 import logoDark from "../icons/logo-dark.svg";
 import logoLight from "../icons/logo-light.svg";
 import { Link } from "react-router";
+import ThemeButton from "../theme-provider/theme-button";
 
 export function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -51,26 +52,7 @@ export function Navbar() {
                 className=" text-brand-dark dark:text-brand-light cursor-pointer"
               />
             </div>
-            <b className="flex items-center justify-center h-10 w-10 rounded-[12px] bg-inputs-light dark:bg-inputs-dark">
-              <button
-                className="cursor-pointer"
-                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              >
-                {theme === "dark" ? (
-                  <Sun
-                    className="text-brand-dark dark:text-brand-light"
-                    size={20}
-                    strokeWidth={1.5}
-                  />
-                ) : (
-                  <Moon
-                    className="text-brand-dark dark:text-brand-light"
-                    size={20}
-                    strokeWidth={1.5}
-                  />
-                )}
-              </button>
-            </b>
+            <ThemeButton />
           </div>
         </div>
       </div>
